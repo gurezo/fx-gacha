@@ -50,10 +50,14 @@ var GetServer = (function() {
     if (query && query.length > 0) {
       var obj = {};
       var queryList = query.split('&');
-      queryList.forEach(function(q) {
-        var [type, value] = q.split('=');
-        obj[type] = value;
-      });
+      for( var i = 0; i < queryList.length; i++ )
+      {
+          var element = queryList[i].split('=');
+          var paramName = decodeURIComponent( element[ 0 ] );
+          var paramValue = decodeURIComponent( element[ 1 ] );
+          obj[ paramName ] = paramValue;
+      }
+        
       if (this.onData) { // 'this' should be passed by bind()
         this.onData(obj);
       }
