@@ -1,0 +1,86 @@
+/*
+ * 選択させない
+ */
+* {
+  -moz-user-select: none;
+}
+
+html,
+body,
+#contents,
+#card-flash1,
+#card-flash2,
+#bg
+{     
+    height:100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+#contents{
+    position: relative;
+}
+
+#card_back,
+#card_front,
+#card-flash1,
+#card-flash2,
+#bg{
+    position: absolute;
+}
+
+#card_back,
+#card_front,
+#card-flash1,
+#card-flash2,
+#bg{
+    background-position: center center;
+    background-repeat: no-repeat;
+    
+}
+
+#card_back,
+#card_front{
+    background-size:100% 100%;
+}
+
+#card-flash1,
+#card-flash2,
+#bg{
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+
+#bg{
+    z-index: 1;
+    background-image: url(images/bg.jpg);
+    background-color: #464646;
+}
+
+#card-flash1{
+    z-index: 2;
+    background-image: url(images/card-flash1.png);
+}
+
+#card-flash2{
+    z-index: 3;
+    background-image: url(images/card-flash2.png);
+}
+
+#card_back{
+    z-index: 4;
+    background-image: url(images/card_back.png);
+    width: 600px;
+    height: 800px;
+}
+
+#card_front{
+    z-index: 5;
+    width: 600px;
+    height: 800px;
+}
+
+
+
