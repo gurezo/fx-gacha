@@ -28,6 +28,7 @@ body,
 #card-flash2,
 #port,
 #logo,
+#log,
 #bg{
     position: absolute;
 }
@@ -61,8 +62,29 @@ body,
     background-color: #464646;
 }
 
-#logo{
+#port{
     z-index: 2;
+    color: #ffffff;
+    left: 40;
+    bottom: 40;
+}
+
+#log{
+    z-index: 3;
+    color: #ffffff;
+    right: 0;
+    top: 0;
+    width: 410px;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+#log pre{
+    margin: 40px;
+}
+
+#logo{
+    z-index: 4;
     background-image: url(images/logo.png);
     width: 339px;
     height: 74px;
@@ -70,32 +92,25 @@ body,
     bottom: 40;
 }
 
-#port{
-    z-index: 3;
-    color: #ffffff;
-    left: 40;
-    bottom: 40;
-}
-
 #card-flash1{
-    z-index: 4;
+    z-index: 5;
     background-image: url(images/card-flash1.png);
 }
 
 #card-flash2{
-    z-index: 5;
+    z-index: 6;
     background-image: url(images/card-flash2.png);
 }
 
 #card_back{
-    z-index: 6;
+    z-index: 7;
     background-image: url(images/card_back.png);
     width: 600px;
     height: 800px;
 }
 
 #card_front{
-    z-index: 7;
+    z-index: 8;
     width: 600px;
     height: 800px;
 }
