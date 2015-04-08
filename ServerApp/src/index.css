@@ -26,6 +26,8 @@ body,
 #card_front,
 #card-flash1,
 #card-flash2,
+#port,
+#logo,
 #bg{
     position: absolute;
 }
@@ -59,25 +61,41 @@ body,
     background-color: #464646;
 }
 
-#card-flash1{
+#logo{
     z-index: 2;
+    background-image: url(images/logo.png);
+    width: 339px;
+    height: 74px;
+    right: 40;
+    bottom: 40;
+}
+
+#port{
+    z-index: 3;
+    color: #ffffff;
+    left: 40;
+    bottom: 40;
+}
+
+#card-flash1{
+    z-index: 4;
     background-image: url(images/card-flash1.png);
 }
 
 #card-flash2{
-    z-index: 3;
+    z-index: 5;
     background-image: url(images/card-flash2.png);
 }
 
 #card_back{
-    z-index: 4;
+    z-index: 6;
     background-image: url(images/card_back.png);
     width: 600px;
     height: 800px;
 }
 
 #card_front{
-    z-index: 5;
+    z-index: 7;
     width: 600px;
     height: 800px;
 }
