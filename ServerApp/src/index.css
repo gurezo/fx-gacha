@@ -7,6 +7,7 @@
 
 html,
 body,
+#whiteout,
 #contents,
 #card-flash1,
 #card-flash2,
@@ -22,6 +23,7 @@ body,
     position: relative;
 }
 
+#whiteout,
 #card_back,
 #card_front,
 #card-flash1,
@@ -32,6 +34,8 @@ body,
 #bg{
     position: absolute;
 }
+
+
 
 #card_back,
 #card_front,
@@ -95,11 +99,13 @@ body,
 #card-flash1{
     z-index: 5;
     background-image: url(images/card-flash1.png);
+    opacity: 0;
 }
 
 #card-flash2{
     z-index: 6;
     background-image: url(images/card-flash2.png);
+    opacity: 0;
 }
 
 #card_back{
@@ -115,5 +121,9 @@ body,
     height: 800px;
 }
 
-
+#whiteout{
+    z-index: 9;
+    background-color: #ffffff;
+    opacity: 0;
+}
 

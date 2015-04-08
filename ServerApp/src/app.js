@@ -24,7 +24,7 @@ $(function(){
         log(now + '\n' + strData + '\n' + requestArea.textContent);
     };
     
-    //中心位置
+    //画面中心位置
     var centerX = $(window).width() / 2;
     
     //カード中央位置
@@ -33,41 +33,67 @@ $(function(){
     
     var power = 0;
     
-    /*
-     * 初期化
-     */
-    function init(){
-        log("init");
-        //光を非表示
-        $("#card-flash1").css({opacity: 0});
-        $("#card-flash2").css({opacity: 0});
-        //カードを中央に配置
-        $("#card_back").css({"top": cardCenterY,"left": centerX ,"width": 0});
-        $("#card_front").css({"top": cardCenterY,"left": centerX,"width": 0});
-        
-        waitInit();
-    }
+    $("#logo").css({right: 40, bottom: 40});
+    $("#port").css({left: 40, bottom: 40});
+    
+
     init();
     
     /*
-     * 待ち画面初期アニメーション
+     * 初期化
      */
-    function waitInit() {
-        log("waitInit");
-        $("#card_back").animate({"width": 600,"left": cardCenterX},{duration: 500, easing: "swing",complete: wait});
+    function init() {
+        //テスト用
+        power = 0;
         
+        $("#card_back").css({opacity: 1, top: cardCenterY, left: centerX ,width: 0})
+            .animate({width: 600,left: cardCenterX},{duration: 500, easing: "swing",complete: wait});
+        $("#card_front").css({opacity: 0});
     }
     
     /*
      * 待ち画面アニメーション
      */
     function wait() {
-        log("wait");
+        //テスト用
+        power ++;
         
-        $("#card_back").animate({"top": cardCenterY + 20},{duration: 1000,easing: "swing"})
-            .animate({"top": cardCenterY - 20},{duration: 1000,easing: "swing", complete: wait});
+        if(power < 2){
+            $("#card_back").animate({top: cardCenterY + 20},{duration: 1000, easing: "swing"})
+                .animate({top: cardCenterY - 20},{duration: 1000, easing: "swing", complete: wait});
+        }else{
+            cardFlash();
+        }
     }
     
+    /*
+     * カードフラッシュアニメーション
+     */
+    function cardFlash(){
+        $("#card_back").animate({"left":cardCenterX, "top": cardCenterY},{duration: 1000, easing: "swing"})
+            .delay(2000).animate({opacity: 0},{duration: 1000});
+        $("#card-flash1").delay(1000)
+            .animate({opacity: 1},{duration: 1000})
+            .animate({opacity: 0},{duration: 1000});
+        $("#card-flash2").delay(1500)
+            .animate({opacity: 1},{duration: 1000})
+            .animate({opacity: 0},{duration: 1000});
+        $("#whiteout").delay(2000)
+            .animate({opacity: 1},{duration: 1000,complete: cardEntry})
+            .animate({opacity: 0,},{duration: 2000});
+    }
+    
+    /*
+     * カード出現
+     */
+    function cardEntry(){
+        var cardNum = Math.floor( Math.random() * 10 )+1;
+        $("#card_front").css({"background-image": 'url(images/cards/'+ cardNum +'.png)', opacity: 1, width: 600, left:cardCenterX})
+            .animate({width:900, height:1200, left:cardCenterX-150, top:cardCenterY-200 },{duration: 500, easing: "swing"})
+            .animate({width:600, height:800, left:cardCenterX, top:cardCenterY },{duration: 100, easing: "swing"})
+            .delay(2000)
+            .animate({width: 0,left: centerX},{duration: 500, easing: "swing",complete: init})
 
+    }
     
 });
