@@ -1,10 +1,38 @@
-$(function(){
+$(function() {
     /*
      * ログ
      */
-    function log(str){
+    function log(str) {
        $("#log pre").text(str + "\n" + $("#log pre").text());  
     }
+    
+    /**
+     * ブラウザでのデバック用
+     * URLの後ろに #param1=10&param2=30 とつけると擬似的にサーバーからの値をテストできる
+     */
+    function locationHashChanged() {
+        if (location.hash) {
+            var data = {};
+            var queryList = location.hash.split('#')[1].split('&');
+            for( var i = 0; i < queryList.length; i++ )
+            {
+                var element = queryList[i].split('=');
+                var paramName = decodeURIComponent( element[ 0 ] );
+                var paramValue = decodeURIComponent( element[ 1 ] );
+                data[ paramName ] = paramValue;
+            }
+        }
+        
+        //デバック
+        var now = new Date().toString();
+        var strData = JSON.stringify(data, undefined, '  ');
+        log(now + '\n' + strData);
+        
+        if(data.power){
+            power = Number(data.power) + power;
+        }
+    }
+    window.onhashchange = locationHashChanged;
     
     /*
      * サーバー接続
@@ -17,9 +45,14 @@ $(function(){
     });
 
     server.onData = function(data) {
+        //デバック
         var now = new Date().toString();
         var strData = JSON.stringify(data, undefined, '  ');
         log(now + '\n' + strData);
+        
+        if(data.power){
+            power = Number(data.power) + power;
+        }
     };
     
     //画面中心位置
@@ -41,7 +74,6 @@ $(function(){
      * 初期化
      */
     function init() {
-        //テスト用
         power = 0;
         
         $("#card_back").css({opacity: 1, top: cardCenterY, left: centerX ,width: 0})
@@ -53,10 +85,8 @@ $(function(){
      * 待ち画面アニメーション
      */
     function wait() {
-        //テスト用
-        power ++;
-        
-        if(power < 2){
+        log("power : " + power);
+        if(power < 1000){
             $("#card_back").animate({top: cardCenterY + 20},{duration: 1000, easing: "swing"})
                 .animate({top: cardCenterY - 20},{duration: 1000, easing: "swing", complete: wait});
         }else{
