@@ -1,6 +1,4 @@
 $(function(){
-    
-    
     /*
      * ログ
      */
@@ -21,7 +19,7 @@ $(function(){
     server.onData = function(data) {
         var now = new Date().toString();
         var strData = JSON.stringify(data, undefined, '  ');
-        log(now + '\n' + strData + '\n' + requestArea.textContent);
+        log(now + '\n' + strData);
     };
     
     //画面中心位置

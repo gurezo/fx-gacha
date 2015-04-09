@@ -57,7 +57,6 @@ var GetServer = (function() {
           var paramValue = decodeURIComponent( element[ 1 ] );
           obj[ paramName ] = paramValue;
       }
-        
       if (this.onData) { // 'this' should be passed by bind()
         this.onData(obj);
       }
