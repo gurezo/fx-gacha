@@ -1,0 +1,49 @@
+html,
+body,
+#gauge,
+#log
+{     
+    height:100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    background-color: #000000;
+}
+
+#log{
+    position: absolute;
+    z-index: 1;
+    color: #666666;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+}
+#log pre{
+    margin: 40px;
+}
+
+#gauge{
+    font-size: 100px;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    color: #ffffff;
+    text-align: center;
+}
+
+#ipaddress{
+    position: absolute;
+    z-index: 3;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#ipaddress input{
+    width: 100%;
+    font-size: 50px;
+}
