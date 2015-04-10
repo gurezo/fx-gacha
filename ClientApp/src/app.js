@@ -15,8 +15,6 @@ $(function() {
       }
     } );
     
-    
-    var power = 100;
     var gamma = 0;
     
     /*
@@ -32,28 +30,39 @@ $(function() {
         
         if(gammaDiff > 30){
             log("gammaDiff : " + gammaDiff);
-            power = power - Math.floor(gammaDiff / 20) ;
-             $("#gauge p").text(power);
             
-            if(power <= 0){
-                var destination = "http://" + $(':text[name="ipaddress"]').val() + "/put?power=1000";
-                log(destination);
-                var req = new XMLHttpRequest({mozSystem: true});
-                req.open('GET', destination, true);
-                req.onreadystatechange = function(aEvt){
-                    if(req.readyState == 4){
-                        console.log('req.readyState == ' + req.readyState);
-                        if(req.status == 200){
-                            console.log(req.responseText);
-                        }else{
-                        //
-                        }
-                    }
-                };
-                req.send(null);
-                
-                power = 100;
+
+            //GETを送る
+            var destination = "http://" + $(':text[name="ipaddress"]').val() + "/put?power=" + gammaDiff;
+            log(destination);
+            var xhr = new XMLHttpRequest({mozSystem: true});
+            xhr.open("GET", destination, true);
+
+            xhr.onreadystatechange = function(){
+                console.log('xhr.readyState: ' + xhr.readyState);
+                console.log('xhr.status: ' + xhr.status);
             }
+
+            xhr.onload = function (e) {
+                console.log('xhr.readyState: ' + xhr.readyState);
+              if (xhr.readyState === 4) {
+                  console.log('xhr.status: ' + xhr.status);
+                if (xhr.status === 200) {
+                  console.log(xhr.responseText);
+                } else {
+                  console.error(xhr.statusText);
+                }
+              }
+            };
+            xhr.onerror = function (e) {
+              console.error(xhr.statusText);
+            };
+            xhr.send(null);
+
+
+            //TODO
+            $("#gauge p").text("振れ!");
+
         }
     }
     
