@@ -13,18 +13,6 @@ body{
     background-color: #000000;
 }
 
-#log{
-    position: absolute;
-    z-index: 1;
-    color: #666666;
-    left: 0;
-    top: 0;
-    overflow: hidden;
-}
-#log pre{
-    margin: 40px;
-}
-
 #gauge{
     font-size: 100px;
     position: absolute;
@@ -43,7 +31,19 @@ body{
     width: 100%;
 }
 
+#ipaddress p{
+    color: #ffffff;
+    margin: 10px;
+}
+
+#ipaddress p a{
+    color: #ffffff;
+}
+
 #ipaddress input{
     width: 100%;
     font-size: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
+

@@ -1,10 +1,4 @@
 $(function() {
-    /*
-     * ログ
-     */
-    function log(str) {
-       $("#log pre").text(str + "\n" + $("#log pre").text());  
-    }
     
     /**
      * ブラウザでのデバック用
@@ -26,7 +20,7 @@ $(function() {
         //デバック
         var now = new Date().toString();
         var strData = JSON.stringify(data, undefined, '  ');
-        log(now + '\n' + strData);
+        console.log(now + '\n' + strData);
         
         if(data.power){
             power = Number(data.power) + power;
@@ -41,14 +35,14 @@ $(function() {
     
     server.open(function onOpened() {
         var msg = 'Running on ' + server.ipAddress + ':' + server.portNumber;
-        $("#port").text(msg);
+        $("#port").html(msg + "<br />ジュエルセイバーFREE http://www.jewel-s.jp/");
     });
-
+    
     server.onData = function(data) {
         //デバック
         var now = new Date().toString();
         var strData = JSON.stringify(data, undefined, '  ');
-        log(now + '\n' + strData);
+        console.log(now + '\n' + strData);
         
         if(data.power){
             power = Number(data.power) + power;

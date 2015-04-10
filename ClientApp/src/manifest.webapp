@@ -12,6 +12,7 @@
   "permissions": {
     "tcp-socket": {},
     "wifi-manage": {},
+    "orientation": "default",
     "systemXHR": {"description": "Allows loading remote content"}
   }
 }

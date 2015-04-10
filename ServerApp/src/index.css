@@ -35,8 +35,6 @@ body,
     position: absolute;
 }
 
-
-
 #card_back,
 #card_front,
 #card-flash1,
@@ -44,7 +42,6 @@ body,
 #bg{
     background-position: center center;
     background-repeat: no-repeat;
-    
 }
 
 #card_back,
@@ -71,20 +68,6 @@ body,
     color: #ffffff;
     left: 40;
     bottom: 40;
-}
-
-#log{
-    z-index: 3;
-    color: #ffffff;
-    right: 0;
-    top: 0;
-    width: 410px;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    overflow: hidden;
-}
-#log pre{
-    margin: 40px;
 }
 
 #logo{
