@@ -85,8 +85,8 @@ $(function() {
      * 待ち画面アニメーション
      */
     function wait() {
-        log("power : " + power);
-        if(power < 1000){
+        console.log("power : " + power);
+        if(power < 100){
             $("#card_back").animate({top: cardCenterY + 20},{duration: 1000, easing: "swing"})
                 .animate({top: cardCenterY - 20},{duration: 1000, easing: "swing", complete: wait});
         }else{
@@ -115,8 +115,8 @@ $(function() {
      * カード出現
      */
     function cardEntry(){
-        var cardNum = Math.floor( Math.random() * 10 )+1;
-        $("#card_front").css({"background-image": 'url(images/cards/'+ cardNum +'.png)', opacity: 1, width: 600, left:cardCenterX})
+        var cardNum = Math.floor( Math.random() * 20 )+1;
+        $("#card_front").css({"background-image": 'url(images/cards/'+ cardNum +'.jpg)', opacity: 1, width: 600, left:cardCenterX})
             .animate({width:900, height:1200, left:cardCenterX-150, top:cardCenterY-200 },{duration: 500, easing: "swing"})
             .animate({width:600, height:800, left:cardCenterX, top:cardCenterY },{duration: 100, easing: "swing"})
             .delay(2000)
