@@ -21,6 +21,7 @@ body,
 
 #contents{
     position: relative;
+    overflow: hidden;
 }
 
 #whiteout,
@@ -31,7 +32,8 @@ body,
 #port,
 #logo,
 #log,
-#bg{
+#bg
+{
     position: absolute;
 }
 
@@ -110,3 +112,12 @@ body,
     opacity: 0;
 }
 
+.power-num{
+    z-index: 10;
+    position: absolute;
+    color: #ffffff;
+    font-size: 400px;
+    opacity: 1;
+    width: 100%;
+    text-align: center;
+}

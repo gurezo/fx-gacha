@@ -24,6 +24,7 @@ $(function() {
         
         if(data.power){
             power = Number(data.power) + power;
+            viewPower(data.power);
         }
     }
     window.onhashchange = locationHashChanged;
@@ -46,6 +47,7 @@ $(function() {
         
         if(data.power){
             power = Number(data.power) + power;
+            viewPower(data.power);
         }
     };
     
@@ -96,6 +98,7 @@ $(function() {
             .delay(2000).animate({opacity: 0},{duration: 1000});
         $("#card-flash1").delay(1000)
             .animate({opacity: 1},{duration: 1000})
+            .delay(1000)
             .animate({opacity: 0},{duration: 1000});
         $("#card-flash2").delay(1500)
             .animate({opacity: 1},{duration: 1000})
@@ -109,13 +112,42 @@ $(function() {
      * カード出現
      */
     function cardEntry(){
+        //ランダム
         var cardNum = Math.floor( Math.random() * 20 )+1;
+        //#card_frontのbackground-imageをカード画像に置き換えてアニメーション
         $("#card_front").css({"background-image": 'url(images/cards/'+ cardNum +'.jpg)', opacity: 1, width: 600, left:cardCenterX})
             .animate({width:900, height:1200, left:cardCenterX-150, top:cardCenterY-200 },{duration: 500, easing: "swing"})
             .animate({width:600, height:800, left:cardCenterX, top:cardCenterY },{duration: 100, easing: "swing"})
             .delay(2000)
             .animate({width: 0,left: centerX},{duration: 500, easing: "swing",complete: init})
-
+    }
+    
+    var powerNumZIndex = 10;
+    
+    /*
+     * パワー表示
+     */
+    function viewPower(num){
+        //.power-numを生成
+        var powerNum = $("<div>");
+        powerNum.html(Math.floor(num));
+        powerNum.attr("class","power-num");
+        $("#contents").append(powerNum);
+        
+        //中央に配置
+        var powerNumCenterX = Math.floor(($(window).width() - powerNum.width()) / 2);
+        var powerNumCenterY  = Math.floor(($(window).height() - powerNum.height()) / 2);
+        powerNumZIndex ++;
+        powerNum.css({left: powerNumCenterX, top: powerNumCenterY ,"z-index" :powerNumZIndex});
+        
+        console.log("($(window).width() : " + $(window).width());
+        console.log("powerNumCenterX : "+powerNumCenterX);
+        console.log("($(window).height() : " + $(window).height());
+        console.log("powerNumCenterY : "+powerNumCenterY);
+        
+        //アニメーション
+        powerNum.animate({zoom:"50%", opacity:1, "font-size": 200 },{duration: 200, easing: "swing"})
+            .animate({opacity: 0},{duration: 1000,complete: function() {this.remove()}});
     }
     
 });

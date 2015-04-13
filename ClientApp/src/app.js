@@ -14,18 +14,22 @@ $(function() {
     window.addEventListener("deviceorientation", handleOrientation, true);
     
     function handleOrientation(orientData) {
-        gammaDiff = Math.round(Math.abs(gammaOld - orientData.gamma));
-        gammaOld = orientData.gamma;
+        var gamma = orientData.gamma / 2;
+        gammaDiff = Math.round(Math.abs(gammaOld - gamma));
+        gammaOld = gamma;
         
         if(gammaDiff > 30){
             console.log("gammaDiff: " + gammaDiff)
             sendXHR();
-            $("#gauge p").text(gammaDiff);
+            $("#gauge div").text(gammaDiff);
             zeroCount = 0;
+            //雷
+            $("#lightning").css({opacity: 1})
+                .animate({opacity: 0},{duration: 1000});
         }else{
             zeroCount ++;
             if(zeroCount == 50){
-                $("#gauge p").text("振れ!"); 
+                $("#gauge div").text("振れ!"); 
                 $("#ipaddress p").html("<a href='http://www.jewel-s.jp/' target='_blank'>ジュエルセイバーFREE</a>");
             }
         }
@@ -36,7 +40,7 @@ $(function() {
      */
     function sendXHR(){
         
-        var destination = "http://" + $(':text[name="ipaddress"]').val() + "/put?power=" + (gammaDiff / 2);
+        var destination = "http://" + $(':text[name="ipaddress"]').val() + "/put?power=" + (gammaDiff);
         var xhr = new XMLHttpRequest({mozSystem: true});
         
         xhr.open("GET", destination, true);
