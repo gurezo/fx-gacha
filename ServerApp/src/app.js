@@ -36,6 +36,12 @@ $(function () {
                 power = Number(data.power) + power;
                 //パワー数値表示
                 viewPower(data.power);
+                //ゲージの更新
+                if (power <= 100) {
+                   $("#gauge").css({height: 800 * power / 100});
+                } else if (power > 100) {
+                    $("#gauge").css({height: 800});
+                }
             }
         };
         
@@ -52,6 +58,8 @@ $(function () {
     function animateStart() {
         
         power = 0;
+        
+        $("#gauge").css({height: 0});
         
         $("#card_back").css({opacity: 1, top: cardCenterY, left: centerX, width: 0})
             .animate({width: 600, left: cardCenterX}, {duration: 500, easing: "swing", complete: wait});
@@ -164,6 +172,12 @@ $(function () {
         if (data.power) {
             power = Number(data.power) + power;
             viewPower(data.power);
+            //ゲージの更新
+            if (power <= 100) {
+               $("#gauge").css({height: 800 * power / 100});
+            } else if (power > 100) {
+                $("#gauge").css({height: 800});
+            }
         }
     }
     
