@@ -1,6 +1,6 @@
 {
   "name": "foxGachaClient",
-  "description": "foxGachaのクライアントアプリです。",
+  "description": "foxGachaのクライアントアプリです。このアプリで遊ぶには、もう一台のFirefox OS端末にfoxGachaServerを入れて動作させる必要があります。また、お互い同じLANのセグメントに接続させて下さい。",
   "launch_path": "/index.html",
   "icons": {
     "16": "/icons/icon16x16.png",

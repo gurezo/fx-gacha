@@ -1,3 +1,13 @@
+/*
+ * GETで得られたクエリーをオブジェクトにして返す.
+ * ※要httpd.js.
+ * 例）http://192.168.xxx.xxx/put?paran1=100&param2=120
+ * flatbirdさんのokan-server.jsをカスタマイズして作成.
+ * https://github.com/flatbird/okan-server/blob/master/okan-server.js
+ * 
+ * @kazygumi
+ */
+
 var GetServer = (function() {
   const PORT = 80;
 
