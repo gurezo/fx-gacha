@@ -2,39 +2,41 @@ $(function () {
     
     "use strict";
     
-    var gammaOld = 0,
-        gammaDiff = 0,
+    var motionXOld = 0,
         zeroCount = 0;
     
     function init() {
         //ポートレートでロック
-        //FIXME ロックできない
         screen.mozLockOrientation(["portrait"]);
+        
         //デバイスの方向変化イベント
-        window.addEventListener("deviceorientation", handleOrientation, true);
+        window.addEventListener("devicemotion", handleMotionEvent, true);
     }
     
     /*
      * デバイスの方向変化イベントハンドラ
      */
-    function handleOrientation(orientData) {
-        var gamma = orientData.gamma / 2;
+    function handleMotionEvent(event) {
+        var motionX = event.accelerationIncludingGravity.x,
+            motionXDiff = Math.round(Math.abs(motionXOld - motionX) / 2);
         
-        gammaDiff = Math.round(Math.abs(gammaOld - gamma));
-        gammaOld = gamma;
+        motionXOld = motionX;
         
-        if (gammaDiff > 30) {
+        console.log("motionX : " + motionX);
+        console.log("motionXDiff : " + motionXDiff);
+        
+        if (motionXDiff > 10) {
             //送信
-            sendXHR(gammaDiff);
-            //gammaDiffを表示
-            $("#gauge div").text(gammaDiff);
+            sendXHR(motionXDiff);
+            //motionYDiffを表示
+            $("#gauge div").text(motionXDiff);
             //雷表現
             $("#lightning").css({opacity: 1})
                 .animate({opacity: 0}, {duration: 1000});
             zeroCount = 0;
         } else {
             zeroCount++;
-            if (zeroCount === 50) {
+            if (zeroCount === 20) {
                 //zeroCountが50を超えたら表示を戻す
                 $("#gauge div").text("振れ!");
                 $("#ipaddress p").html("<a href='http://www.jewel-s.jp/' target='_blank'>ジュエルセイバーFREE</a>");
