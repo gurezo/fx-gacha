@@ -2,6 +2,8 @@
 
 Fox Gachaは、2台のFirefox OS端末を通信して遊ぶことができるインタラクションアプリです。
 
+[![Alt text for your video](http://img.youtube.com/vi/nkgVfZMIzYQ/0.jpg)](http://www.youtube.com/watch?v=nkgVfZMIzYQ)
+
 ##遊び方
 
 2台のFirefox OS端末を用意します。
